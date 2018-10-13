@@ -82,26 +82,26 @@ System.out.println("終了処理");
 				glfwSetWindowShouldClose(window, true); // We will detect this in the rendering loop
 			});
 		// 2018/10/12 実装漏れ
-//		try (MemoryStack stack = stackPush()) {
-//			IntBuffer pWidth = stack.mallocInt(1);
-//			IntBuffer pHeight = stack.mallocInt(1);
-//			// ウィンドウサイズ指定
-//			glfwGetWindowSize(window, pWidth, pHeight);
-//			// 
-//			GLFWVidMode vidMode = glfwGetVideoMode(glfwGetPrimaryMonitor());
-//			// 画面の中央座標を設定する
-//			glfwSetWindowPos(
-//					window
-//					, (vidMode.width() - pWidth.get(0) / 2)
-//					, (vidMode.height() - pHeight.get(0)) / 2
-//			);
-//			// OpenGLコンテキストを作成する
-//			glfwMakeContextCurrent(window);
-//			// enable v-sync
-//			glfwSwapInterval(1);
-//			// 表示処理
-//			glfwShowWindow(window);
-//		}
+		try (MemoryStack stack = stackPush()) {
+			IntBuffer pWidth = stack.mallocInt(1);
+			IntBuffer pHeight = stack.mallocInt(1);
+			// ウィンドウサイズ指定
+			glfwGetWindowSize(window, pWidth, pHeight);
+			// 
+			GLFWVidMode vidMode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+			// 画面の中央座標を設定する
+			glfwSetWindowPos(
+					window
+					, (vidMode.width() - pWidth.get(0) / 2)
+					, (vidMode.height() - pHeight.get(0)) / 2
+			);
+			// OpenGLコンテキストを作成する
+			glfwMakeContextCurrent(window);
+			// enable v-sync
+			glfwSwapInterval(1);
+			// 表示処理
+			glfwShowWindow(window);
+		}
 	}
 	// 写経元のコードでは「loop()」になっている
 	private void gameLoop() {
