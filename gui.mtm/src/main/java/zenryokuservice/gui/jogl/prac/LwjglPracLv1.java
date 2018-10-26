@@ -72,7 +72,6 @@ System.out.println("終了処理");
 		glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
 		
 		window = glfwCreateWindow(300, 300, "Hello LWJGL", NULL, NULL);
-		
 		if(window == NULL) {
 			throw new RuntimeException("Failed to create GLFW Window");
 		}
@@ -105,14 +104,61 @@ System.out.println("終了処理");
 	}
 	// 写経元のコードでは「loop()」になっている
 	private void gameLoop() {
-		GL.createCapabilities();
-		glClearColor(1.0f, 0.0f, 0.0f, 0.0f);
+		// 初期描画
+		drawInitView();
 		while ( !glfwWindowShouldClose(window) ) {
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
 
 			glfwSwapBuffers(window); // swap the color buffers
-
 			glfwPollEvents();
 		}
+	}
+
+	/**
+	 * 初期画面を描く<br/>
+	 */
+	private void drawInitView() {
+		GL.createCapabilities();
+		// 画面の初期化
+		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+//	     glLoadIdentity();  
+//
+//	     glTranslatef(0f,0.0f,-7f);             
+//	     glRotatef(45f,0.0f,1.0f,0.0f);               
+//	     glColor3f(0.5f,0.5f,1.0f);  
+//
+	     glBegin(GL_QUADS);    
+	        glColor3f(1.0f,1.0f,0.0f);           
+	        glVertex3f( 1.0f, 1.0f,-1.0f);        
+	        glVertex3f(-1.0f, 1.0f,-1.0f);   
+	        glVertex3f(-1.0f, 1.0f, 1.0f);
+	        glVertex3f( 1.0f, 1.0f, 1.0f);  
+//	        glColor3f(1.0f,0.5f,0.0f);            
+//	        glVertex3f( 1.0f,-1.0f, 1.0f);
+//	        glVertex3f(-1.0f,-1.0f, 1.0f);
+//	        glVertex3f(-1.0f,-1.0f,-1.0f);
+//	        glVertex3f( 1.0f,-1.0f,-1.0f);
+//	        glColor3f(1.0f,0.0f,0.0f);
+//	        glVertex3f( 1.0f, 1.0f, 1.0f);
+//	        glVertex3f(-1.0f, 1.0f, 1.0f);
+//	        glVertex3f(-1.0f,-1.0f, 1.0f);
+//	        glVertex3f( 1.0f,-1.0f, 1.0f);
+//	        glColor3f(1.0f,1.0f,0.0f);
+//	        glVertex3f( 1.0f,-1.0f,-1.0f);
+//	        glVertex3f(-1.0f,-1.0f,-1.0f);
+//	        glVertex3f(-1.0f, 1.0f,-1.0f);
+//	        glVertex3f( 1.0f, 1.0f,-1.0f);
+//	        glColor3f(0.0f,0.0f,1.0f);
+//	        glVertex3f(-1.0f, 1.0f, 1.0f);
+//	        glVertex3f(-1.0f, 1.0f,-1.0f);
+//	        glVertex3f(-1.0f,-1.0f,-1.0f);
+//	        glVertex3f(-1.0f,-1.0f, 1.0f);
+//	        glColor3f(1.0f,0.0f,1.0f);
+//	        glVertex3f( 1.0f, 1.0f,-1.0f);
+//	        glVertex3f( 1.0f, 1.0f, 1.0f);
+//	        glVertex3f( 1.0f,-1.0f, 1.0f);
+//	        glVertex3f( 1.0f,-1.0f,-1.0f);
+	    glEnd();    
+
 	}
 }
