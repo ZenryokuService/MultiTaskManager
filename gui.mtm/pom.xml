@@ -26,5 +26,11 @@
          <artifactId>joml</artifactId >
          <version>1.9.6</version >
     </dependency>
+	<dependency>
+	    <groupId>org.l33tlabs.twl</groupId>
+	    <artifactId>pngdecoder</artifactId>
+	    <version>1.0</version>
+	</dependency>
+    
   </dependencies>
 </project>
