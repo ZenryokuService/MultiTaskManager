@@ -32,6 +32,7 @@ public class DummyGame implements IGameLogic {
         
     }
 
+    /* 追加したメソッドです */
     private GameItem createCube(float cubeSize, float posX, float posY, float posZ) {
         // Create the Mesh
         float[] positions = new float[]{
@@ -80,7 +81,8 @@ public class DummyGame implements IGameLogic {
         GameItem gameItem = new GameItem(mesh);
         gameItem.setPosition(posX, posY, posZ);
         gameItem.setRotation(20, 30, 0);
-        return gameItem;    }
+        return gameItem;
+    }
     /**
      * 元々のCubeデータの定義
      * @return GameItem Cubeを作成する
