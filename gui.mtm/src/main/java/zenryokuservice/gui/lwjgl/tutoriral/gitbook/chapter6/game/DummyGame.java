@@ -30,10 +30,10 @@ public class DummyGame implements IGameLogic {
         renderer.init(window);
         // 四角形の頂点定義
         float[] positions = new float[]{
-            -0.5f,  0.5f, -1.05f,
-            -0.5f, -0.5f, -1.05f,
-             0.5f, -0.5f, -1.05f,
-             0.5f,  0.5f, -1.05f,
+            -0.5f,  0.5f, -2.5f,
+            -0.5f, -0.5f, -2.5f,
+             0.5f, -0.5f, -2.5f,
+             0.5f,  0.5f, -2.5f,
         };
         float[] colours = new float[]{
             0.5f, 0.0f, 0.0f,

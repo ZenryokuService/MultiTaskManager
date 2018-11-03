@@ -28,6 +28,64 @@ public class DummyGame implements IGameLogic {
     @Override
     public void init(Window window) throws Exception {
         renderer.init(window);
+        gameItems = new GameItem[] { createCube(0.1f, 0, 0, -2) };
+        
+    }
+
+    private GameItem createCube(float cubeSize, float posX, float posY, float posZ) {
+        // Create the Mesh
+        float[] positions = new float[]{
+            // VO
+            -1 * cubeSize,  cubeSize,  cubeSize,
+            // V1
+            -1 * cubeSize, -1 * cubeSize,  cubeSize,
+            // V2
+            cubeSize, -1 * cubeSize,  cubeSize,
+            // V3
+            cubeSize,  cubeSize,  cubeSize,
+            // V4
+            -1 * cubeSize,  cubeSize, -1 * cubeSize,
+            // V5
+            cubeSize,  cubeSize, -1 * cubeSize,
+            // V6
+            -1 * cubeSize, -1 * cubeSize, -1 * cubeSize,
+            // V7
+            cubeSize, -1 * cubeSize, -1 * cubeSize,
+        };
+        float[] colours = new float[]{
+            0.5f, 0.0f, 0.0f,
+            0.0f, 0.5f, 0.0f,
+            0.0f, 0.0f, 0.5f,
+            0.0f, 0.5f, 0.5f,
+            0.5f, 0.0f, 0.0f,
+            0.0f, 0.5f, 0.0f,
+            0.0f, 0.0f, 0.5f,
+            0.0f, 0.5f, 0.5f,
+        };
+        int[] indices = new int[]{
+            // Front face
+            0, 1, 3, 3, 1, 2,
+            // Top Face
+            4, 0, 3, 5, 4, 3,
+            // Right face
+            3, 2, 7, 5, 3, 7,
+            // Left face
+            6, 1, 0, 6, 0, 4,
+            // Bottom face
+            2, 1, 6, 2, 6, 7,
+            // Back face
+            7, 6, 4, 7, 4, 5,
+        };
+        Mesh mesh = new Mesh(positions, colours, indices);
+        GameItem gameItem = new GameItem(mesh);
+        gameItem.setPosition(posX, posY, posZ);
+        gameItem.setRotation(20, 30, 0);
+        return gameItem;    }
+    /**
+     * 元々のCubeデータの定義
+     * @return GameItem Cubeを作成する
+     */
+    private GameItem createOriginCube() {
         // Create the Mesh
         float[] positions = new float[]{
             // VO
@@ -74,9 +132,8 @@ public class DummyGame implements IGameLogic {
         Mesh mesh = new Mesh(positions, colours, indices);
         GameItem gameItem = new GameItem(mesh);
         gameItem.setPosition(0, 0, -2);
-        gameItems = new GameItem[] { gameItem };
+        return gameItem;
     }
-
     @Override
     public void input(Window window) {
         displyInc = 0;
@@ -121,11 +178,11 @@ public class DummyGame implements IGameLogic {
             gameItem.setScale(scale);
             
             // Update rotation angle
-            float rotation = gameItem.getRotation().x + 1.5f;
-            if ( rotation > 360 ) {
-                rotation = 0;
-            }
-            gameItem.setRotation(rotation, rotation, rotation);            
+//            float rotation = gameItem.getRotation().x + 1.5f;
+//            if ( rotation > 360 ) {
+//                rotation = 0;
+//            }
+//            gameItem.setRotation(rotation, rotation, rotation);            
         }
     }
 

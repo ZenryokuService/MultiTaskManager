@@ -5,6 +5,7 @@ import static org.lwjgl.opengl.GL20.*;
 import static org.lwjgl.opengl.GL30.*;
 import zenryokuservice.gui.lwjgl.tutoriral.gitbook.chapter5.engine.Utils;
 import zenryokuservice.gui.lwjgl.tutoriral.gitbook.chapter5.engine.Window;
+import zenryokuservice.gui.lwjgl.tutoriral.gitbook.chapter5.engine.graph.GameItem;
 import zenryokuservice.gui.lwjgl.tutoriral.gitbook.chapter5.engine.graph.Mesh;
 import zenryokuservice.gui.lwjgl.tutoriral.gitbook.chapter5.engine.graph.ShaderProgram;
 
@@ -26,7 +27,7 @@ public class Renderer {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     }
 
-    public void render(Window window, Mesh mesh) {
+    public void render(Window window, GameItem[] gameItems) {
         clear();
 
         if (window.isResized()) {
@@ -35,13 +36,15 @@ public class Renderer {
         }
 
         shaderProgram.bind();
-
-        // Draw the mesh
-        glBindVertexArray(mesh.getVaoId());
-        glEnableVertexAttribArray(0);
-        // 追記 2018/10/27
-        glEnableVertexAttribArray(1);
-        glDrawElements(GL_TRIANGLES, mesh.getVertexCount(), GL_UNSIGNED_INT, 0);
+        int i = -1;
+        for (GameItem item : gameItems) {
+            // Draw the mesh
+            glBindVertexArray(item.getMesh().getVaoId());
+            glEnableVertexAttribArray(++i);
+            // 追記 2018/10/27
+            glEnableVertexAttribArray(++i);
+            glDrawElements(GL_TRIANGLES, item.getMesh().getVertexCount(), GL_UNSIGNED_INT, 0);
+        }
 
         // Restore state
         glDisableVertexAttribArray(0);

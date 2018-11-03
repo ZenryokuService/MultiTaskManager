@@ -62,7 +62,6 @@ public class Mesh {
 
             vaoId = glGenVertexArrays();
             glBindVertexArray(vaoId);
-
             // Position VBO
             posVboId = glGenBuffers();
             posBuffer = MemoryUtil.memAllocFloat(positions.length);
