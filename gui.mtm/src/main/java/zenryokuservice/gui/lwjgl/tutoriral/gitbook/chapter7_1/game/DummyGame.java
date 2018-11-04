@@ -2,6 +2,9 @@ package zenryokuservice.gui.lwjgl.tutoriral.gitbook.chapter7_1.game;
 
 import org.joml.Vector3f;
 import static org.lwjgl.glfw.GLFW.*;
+
+import java.util.ArrayList;
+
 import zenryokuservice.gui.lwjgl.tutoriral.gitbook.chapter7_1.engine.GameItem;
 import zenryokuservice.gui.lwjgl.tutoriral.gitbook.chapter7_1.engine.IGameLogic;
 import zenryokuservice.gui.lwjgl.tutoriral.gitbook.chapter7_1.engine.Window;
@@ -28,8 +31,39 @@ public class DummyGame implements IGameLogic {
     @Override
     public void init(Window window) throws Exception {
         renderer.init(window);
-        gameItems = new GameItem[] { createCube(0.1f, 0, 0, -2) };
-        
+        final float cubeSize = 0.1f;
+        // x軸の初期値
+        final float xInit = -0.8f;
+        // y軸の初期値
+        final float yInit = -0.8f;
+        // z軸の初期値
+        final float zInit = -2;
+        // x軸の増減幅
+        final float xWidth = 0.185f;
+        // y軸の増減幅
+        final float yWidth = 0.033f;
+        // z軸の増減幅
+        final float zWidth = 0.1f;
+        ArrayList<GameItem> arr = new ArrayList<GameItem>();
+        // 1ヶ月分(5週間分のマスを作る)
+        for(int j = 1; j <= 5; j++) {
+        	// 開始点より一列文ずらす
+        	// X軸の開始点
+        	float xStart = xInit - (0.1f * j);
+        	// Y軸の開始点
+        	float yStart = yInit + (0.06f * j) ;
+        	// Z軸の開始点
+        	float zStart = zInit - (0.16f * j);
+            // １週間分
+            for(int i = 1; i <= 7; i++) {
+        		arr.add(createCube(
+        				cubeSize, xStart + (xWidth * i), yStart + (yWidth * i), zStart - (zWidth * i)));
+            }
+        }
+        // 配列の要素数を指定する
+        GameItem[] items = new GameItem[arr.size()];
+        // 配列の取り出し
+        gameItems = arr.toArray(items);
     }
 
     /* 追加したメソッドです */
