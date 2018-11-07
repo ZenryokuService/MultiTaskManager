@@ -44,12 +44,12 @@ public class DummyGame implements IGameLogic {
             int[] indices = new int[]{
                 0, 1, 3, 3, 1, 2,};
             // 追記　2018/10/27
-            float[] colors = new float[] {
+            float[] textCoord = new float[] {
             	    0.5f, 0.0f, 0.0f,
             	    0.0f, 0.5f, 0.0f,
             	    0.0f, 0.0f, 0.5f,
             	    0.8f, 0.8f, 0.0f,};
-            return new GameItem(new Mesh(positions, indices, colors));
+            return new GameItem(new Mesh(positions, indices, textCoord, true));
     }
 
     
