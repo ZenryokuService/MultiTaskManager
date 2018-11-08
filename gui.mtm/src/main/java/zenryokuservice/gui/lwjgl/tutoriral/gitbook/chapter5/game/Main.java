@@ -1,5 +1,7 @@
 package zenryokuservice.gui.lwjgl.tutoriral.gitbook.chapter5.game;
 
+import org.lwjgl.opengl.GLUtil;
+
 import zenryokuservice.gui.lwjgl.tutoriral.gitbook.chapter5.engine.GameEngine;
 import zenryokuservice.gui.lwjgl.tutoriral.gitbook.chapter5.engine.IGameLogic;
 

@@ -34,22 +34,39 @@ public class DummyGame implements IGameLogic {
     private GameItem createFloor() {
         float[] positions = new float[]{
             	// V0
-                0.0f, 0.25f, 0.0f,
+                -0.5f, 0.5f, 0.0f,
                 // V1
-                -0.0f, -0.0f, 0.0f,
+                -0.0f, -0.5f, 0.0f,
                 // V2
-                0.5f, -0.0f, 0.0f,
+                0.5f, -0.5f, 0.0f,
                 // V3
-                0.5f, 0.25f, 0.0f,};
+                0.5f, 0.5f, 0.0f,
+                
+                // for Texture V4=V0
+                -0.5f, 0.5f, 0.0f,
+                // for Texture V5=V1
+                -0.0f, -0.5f, 0.0f,
+                // for Texture V6=V2
+                0.5f, -0.5f, 0.0f,
+                // for Texture V7=V3
+                0.5f, 0.5f, 0.0f,
+        	};
             int[] indices = new int[]{
                 0, 1, 3, 3, 1, 2,};
-            // 追記　2018/10/27
+//            // 追記　2018/10/27
             float[] textCoord = new float[] {
-            	    0.5f, 0.0f, 0.0f,
-            	    0.0f, 0.5f, 0.0f,
-            	    0.0f, 0.0f, 0.5f,
-            	    0.8f, 0.8f, 0.0f,};
-            return new GameItem(new Mesh(positions, indices, textCoord, true));
+                    0.0f, 0.0f,
+                    0.0f, 1.0f,
+                    1.0f, 1.0f,
+                    1.0f, 0.0f,
+                    
+                    // For text coords in top face
+                    0.0f, 0.0f,
+                    0.0f, 1.0f,
+                    1.0f, 1.0f,
+                    1.0f, 0.0f,
+            };
+            return new GameItem(new Mesh(positions, indices, textCoord));
     }
 
     

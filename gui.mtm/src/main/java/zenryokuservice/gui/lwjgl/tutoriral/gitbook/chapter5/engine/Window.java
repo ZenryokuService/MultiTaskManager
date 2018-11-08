@@ -4,6 +4,8 @@ import static org.lwjgl.glfw.GLFW.*;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
+import org.lwjgl.opengl.GLUtil;
+
 import static org.lwjgl.opengl.GL11.GL_FALSE;
 import static org.lwjgl.opengl.GL11.GL_TRUE;
 import static org.lwjgl.opengl.GL11.glClearColor;
@@ -88,8 +90,9 @@ public class Window {
 
         // Make the window visible
         glfwShowWindow(windowHandle);
-
         GL.createCapabilities();
+    	// エラーログを出力するのに設定する
+		GLUtil.setupDebugMessageCallback(System.out);
 
         // Set the clear color
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);

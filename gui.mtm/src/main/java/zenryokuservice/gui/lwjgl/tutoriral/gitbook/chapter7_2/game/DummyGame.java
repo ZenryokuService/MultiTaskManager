@@ -81,39 +81,40 @@ public class DummyGame implements IGameLogic {
             0.5f, -0.5f, 0.5f,
         };
         float[] textCoords = new float[]{
+        	// Imageの取得する座標
             0.0f, 0.0f,
-            0.0f, 0.5f,
-            0.5f, 0.5f,
-            0.5f, 0.0f,
-            
+            1.0f, 0.0f,
+            0.0f, 1.0f,
+            1.0f, 1.0f,
+            // この部分がわからない
             0.0f, 0.0f,
-            0.5f, 0.0f,
-            0.0f, 0.5f,
-            0.5f, 0.5f,
+            1.0f, 0.0f,
+            0.0f, 1.0f,
+            1.0f, 1.0f,
             
             // For text coords in top face
-            0.0f, 0.5f,
-            0.5f, 0.5f,
+            0.0f, 0.0f,
+            1.0f, 0.0f,
             0.0f, 1.0f,
-            0.5f, 1.0f,
+            1.0f, 1.0f,
 
             // For text coords in right face
             0.0f, 0.0f,
-            0.0f, 0.5f,
+            0.0f, 1.0f,
 
             // For text coords in left face
-            0.5f, 0.0f,
-            0.5f, 0.5f,
+            1.0f, 0.0f,
+            1.0f, 1.0f,
 
             // For text coords in bottom face
-            0.5f, 0.0f,
+            1.0f, 1.0f,
+            0.0f, 1.0f,
+            0.0f, 0.0f,
             1.0f, 0.0f,
-            0.5f, 0.5f,
-            1.0f, 0.5f,
         };
         int[] indices = new int[]{
             // Front face
-            0, 1, 3, 3, 1, 2,
+        	10, 18, 11, 11, 18, 19,
             // Top Face
             8, 10, 11, 9, 8, 11,
             // Right face
@@ -124,7 +125,7 @@ public class DummyGame implements IGameLogic {
             16, 18, 19, 17, 16, 19,
             // Back face
             4, 6, 7, 5, 4, 7,};
-        Texture texture = new Texture("/textures/grassblock.png");
+        Texture texture = new Texture("/textures/Mon.png");
         Mesh mesh = new Mesh(positions, textCoords, indices, texture);
         GameItem gameItem = new GameItem(mesh);
         gameItem.setPosition(0, 0, -2);
@@ -153,6 +154,8 @@ public class DummyGame implements IGameLogic {
             scaleInc = -1;
         } else if (window.isKeyPressed(GLFW_KEY_X)) {
             scaleInc = 1;
+        } else if (window.isKeyPressed(GLFW_KEY_SPACE)) {
+        	updateRotate();
         }
     }
 
@@ -174,15 +177,25 @@ public class DummyGame implements IGameLogic {
             }
             gameItem.setScale(scale);
 
+//            // Update rotation angle
+//            float rotation = gameItem.getRotation().x + 1.5f;
+//            if (rotation > 360) {
+//                rotation = 0;
+//            }
+//            gameItem.setRotation(rotation, rotation, rotation);
+        }
+    }
+
+    private void updateRotate() {
+    	for(GameItem gameItem : gameItems) {
             // Update rotation angle
             float rotation = gameItem.getRotation().x + 1.5f;
             if (rotation > 360) {
                 rotation = 0;
             }
             gameItem.setRotation(rotation, rotation, rotation);
-        }
+    	}
     }
-
     @Override
     public void render(Window window) {
         renderer.render(window, gameItems);
